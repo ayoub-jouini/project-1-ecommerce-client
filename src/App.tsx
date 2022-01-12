@@ -6,6 +6,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import News from './pages/News';
 import NotFound from './pages/NotFound';
+import Product from './pages/Product';
 import Products from './pages/Products';
 import Promotions from './pages/Promotions';
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="products/:category" element={<Products />} />
+          <Route path="products/:category/:product" element={<Product />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
