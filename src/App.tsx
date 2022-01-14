@@ -14,7 +14,7 @@ import Product from './pages/Product';
 import Products from './pages/Products';
 import Promotions from './pages/Promotions';
 
-import NavBar from './components/NavBar';
+import NavBar from './components/navBar/NavBar';
 
 interface Theme {
   palette: {
