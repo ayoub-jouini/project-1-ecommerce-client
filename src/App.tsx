@@ -1,9 +1,8 @@
 import React from 'react';
-
 import "./styles/app.css"
-
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
@@ -15,6 +14,7 @@ import Products from './pages/Products';
 import Promotions from './pages/Promotions';
 
 import NavBar from './components/navBar/NavBar';
+import Footer from './components/footer/Footer';
 
 interface Theme {
   palette: {
@@ -50,8 +50,8 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <NavBar />
         <div className="App">
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="promotions" element={<Promotions />} />
@@ -63,6 +63,7 @@ const App: React.FC = () => {
             <Route path="products/:category/:product" element={<Product />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </div>
       </ThemeProvider>
     </BrowserRouter>
