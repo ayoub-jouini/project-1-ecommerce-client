@@ -35,28 +35,30 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ margin: 0 }}>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Logo />
-                    <NavMenuResp pages={pages}
-                        handleOpenNavMenu={handleOpenNavMenu}
-                        handleCloseNavMenu={handleCloseNavMenu}
-                        anchorElNav={anchorElNav}
-                    />
-                    <LogoResp />
-                    <NavMenu pages={pages}
-                        categories={categories}
-                        anchorElUser={anchorElUser}
-                        handleOpenUserMenu={handleOpenUserMenu}
-                        handleCloseNavMenu={handleCloseNavMenu}
-                        handleCloseUserMenu={handleCloseUserMenu} />
-                    <SearchBar />
-                    <ShoppingCart />
+        <header>
+            <AppBar position="static" sx={{ margin: 0 }}>
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <Logo />
+                        <NavMenuResp pages={pages}
+                            handleOpenNavMenu={handleOpenNavMenu}
+                            handleCloseNavMenu={handleCloseNavMenu}
+                            anchorElNav={anchorElNav}
+                        />
+                        <LogoResp />
+                        <NavMenu pages={pages}
+                            categories={categories}
+                            anchorElUser={anchorElUser}
+                            handleOpenUserMenu={handleOpenUserMenu}
+                            handleCloseNavMenu={handleCloseNavMenu}
+                            handleCloseUserMenu={handleCloseUserMenu} />
+                        <SearchBar />
+                        <ShoppingCart />
 
-                </Toolbar>
-            </Container>
-        </AppBar>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </header>
     );
 };
 export default NavBar;

@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 import ProductsMenu from './ProductsMenu';
+import { Link } from "react-router-dom";
 
 interface Props {
     pages: String[];
@@ -29,13 +30,15 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
                 handleCloseUserMenu={handleCloseUserMenu}
             />
             {pages.map<JSX.Element>((page, key) => (
-                <Button
-                    key={key}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                    {page}
-                </Button>
+                <Link to={`${page}`}>
+                    <Button
+                        key={key}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        {page}
+                    </Button>
+                </Link>
             ))}
         </Box>
     );

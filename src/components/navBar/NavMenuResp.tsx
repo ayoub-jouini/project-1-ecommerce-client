@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 interface Props {
     pages: string[];
@@ -51,7 +52,9 @@ const NavMenuResp: React.FC<Props> = ({ pages, handleOpenNavMenu,
 
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{page}</Typography>
+                        <Link to={page} >
+                            <Typography textAlign="center" color="primary">{page}</Typography>
+                        </Link>
                     </MenuItem>
                 ))}
             </Menu>
