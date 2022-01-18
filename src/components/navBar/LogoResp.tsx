@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 const LogoResp: React.FC = () => {
     return (
         <Typography
+            color="#ECECEC"
             variant="h6"
             noWrap
             component="div"
