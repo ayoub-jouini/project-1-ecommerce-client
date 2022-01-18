@@ -20,7 +20,7 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
         <Box sx={{ flexGrow: 0.2, display: { xs: 'none', md: 'flex' } }}>
             <Button
                 onClick={handleOpenUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: '#ECECEC', display: 'block' }}
             >
                 products
             </Button>
@@ -34,7 +34,7 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
                     <Button
                         key={key}
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block' }}
+                        sx={{ my: 2, color: '#ECECEC', display: 'block' }}
                     >
                         {page}
                     </Button>
