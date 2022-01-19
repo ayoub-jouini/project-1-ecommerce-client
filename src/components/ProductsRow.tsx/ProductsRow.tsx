@@ -40,7 +40,7 @@ const ProductsRow: React.FC<Props> = ({ title, products }) => {
                     <Grid container spacing={7} >
                         {
                             products.map((product, key) => (
-                                <Grid item xs={12} sm={3}>
+                                <Grid item xs={12} sm={3} key={key}>
                                     <ProductCard
                                         name={product.productName}
                                         description={product.description}

@@ -30,9 +30,8 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
                 handleCloseUserMenu={handleCloseUserMenu}
             />
             {pages.map<JSX.Element>((page, key) => (
-                <Link to={`${page}`}>
+                <Link to={`${page}`} key={key}>
                     <Button
-                        key={key}
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: '#ECECEC', display: 'block' }}
                     >
