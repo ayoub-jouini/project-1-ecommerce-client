@@ -26,7 +26,7 @@ const data = [
 
 const Footer: React.FC = () => {
     return (
-        <footer>
+        <footer style={{ marginTop: "50px" }}>
             <Box sx={{ backgroundColor: "primary.main" }} color="#ECECEC">
                 <Container maxWidth="lg">
                     <Grid container spacing={7}>
