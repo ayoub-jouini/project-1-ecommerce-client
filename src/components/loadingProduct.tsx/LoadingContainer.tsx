@@ -1,5 +1,4 @@
-import { Container, Grid, styled, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Container, Grid, styled, Typography } from '@mui/material';
 import React from 'react'
 import LoadingProduct from './LoadingProduct';
 
