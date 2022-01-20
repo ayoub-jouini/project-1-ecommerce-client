@@ -1,5 +1,4 @@
-import { Skeleton } from "@mui/material";
-import { Box } from "@mui/system";
+import { Skeleton, Box } from "@mui/material";
 import React from "react";
 
 const LoadingProduct: React.FC = () => {
