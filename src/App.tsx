@@ -20,6 +20,7 @@ import NavBar from './components/navBar/NavBar';
 import Footer from './components/footer/Footer';
 
 import AuthContext from './utils/auth-context';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface Theme {
   palette: {
@@ -55,6 +56,8 @@ const App: React.FC = () => {
 
   const { token, login, logout, userId, emailT } = useAuth();
 
+  const queryClient = new QueryClient();
+
   let dashboardRoute = <LogIn />;
   if (token) {
     dashboardRoute = (<CreateProduct />)
@@ -72,20 +75,22 @@ const App: React.FC = () => {
             logIn: login,
             logOut: logout
           }}>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="promotions" element={<Promotions />} />
-              <Route path="blog" element={<Blog />} />
-              <Route path="news" element={<News />} />
-              <Route path="aboutus" element={<AboutUs />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="products/:category" element={<Products />} />
-              <Route path="products/:category/:product" element={<Product />} />
-              <Route path="admin-dashboard" element={dashboardRoute} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
+            <QueryClientProvider client={queryClient}>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="promotions" element={<Promotions />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="news" element={<News />} />
+                <Route path="aboutus" element={<AboutUs />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="products/:category" element={<Products />} />
+                <Route path="products/:category/:product" element={<Product />} />
+                <Route path="admin-dashboard" element={dashboardRoute} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </QueryClientProvider>
           </AuthContext.Provider>
         </div>
       </ThemeProvider>
