@@ -1,7 +1,6 @@
-import { Box } from "@mui/system";
 import React from "react";
 import ErrorIcon from '@mui/icons-material/Error';
-import { Container, styled, Typography } from "@mui/material";
+import { Container, styled, Typography, Box } from "@mui/material";
 
 const BoxStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(1),
