@@ -15,16 +15,21 @@ const Home: React.FC = () => {
         return data;
     });
 
+    const newProducts = useQuery(['products', 'new'], async () => {
+        const data = await axios.get('http://localhost:5000/api/products/newproducts');
+        return data;
+    })
+
     return (
         <Box sx={{ marginDown: "100px" }}>
             <CarouselComponent />
-            {bestProductData.isLoading && <LoadingContainer title="BEST-Seller" />}
+            {bestProductData.isLoading && <LoadingContainer title="BEST-SELLER" />}
             {bestProductData.isError && <LoadingError title="BEST-SELLER" />}
             {bestProductData.data && <ProductsRow title="BEST-SELLER" products={bestProductData.data?.data.bestProducts} />}
 
-            {bestProductData.isLoading && <LoadingContainer title="NEW-PRODUCTS" />}
-            {bestProductData.isError && <LoadingError title="NEW-PRODUCTS" />}
-            {bestProductData.data && <ProductsRow title="NEW-PRODUCTS" products={bestProductData.data?.data.bestProducts} />}
+            {newProducts.isLoading && <LoadingContainer title="NEW-PRODUCTS" />}
+            {newProducts.isError && <LoadingError title="NEW-PRODUCTS" />}
+            {newProducts.data && <ProductsRow title="NEW-PRODUCTS" products={newProducts.data?.data.newProducts} />}
 
             <NewsLetter />
         </Box>
