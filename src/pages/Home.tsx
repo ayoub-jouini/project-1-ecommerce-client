@@ -15,21 +15,25 @@ const Home: React.FC = () => {
         return data;
     });
 
-    const newProducts = useQuery(['products', 'new'], async () => {
+    const newProductsData = useQuery(['products', 'new'], async () => {
         const data = await axios.get('http://localhost:5000/api/products/newproducts');
         return data;
     })
+
+    const sliceData = (dataArray: any) => {
+        return (dataArray.slice(0, 4));
+    }
 
     return (
         <Box sx={{ marginDown: "100px" }}>
             <CarouselComponent />
             {bestProductData.isLoading && <LoadingContainer title="BEST-SELLER" />}
             {bestProductData.isError && <LoadingError title="BEST-SELLER" />}
-            {bestProductData.data && <ProductsRow title="BEST-SELLER" products={bestProductData.data?.data.bestProducts} />}
+            {bestProductData.data && <ProductsRow title="BEST-SELLER" products={sliceData(bestProductData.data?.data.bestProducts)} />}
 
-            {newProducts.isLoading && <LoadingContainer title="NEW-PRODUCTS" />}
-            {newProducts.isError && <LoadingError title="NEW-PRODUCTS" />}
-            {newProducts.data && <ProductsRow title="NEW-PRODUCTS" products={newProducts.data?.data.newProducts} />}
+            {newProductsData.isLoading && <LoadingContainer title="NEW-PRODUCTS" />}
+            {newProductsData.isError && <LoadingError title="NEW-PRODUCTS" />}
+            {newProductsData.data && <ProductsRow title="NEW-PRODUCTS" products={sliceData(newProductsData.data?.data.newProducts)} />}
 
             <NewsLetter />
         </Box>
