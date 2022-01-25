@@ -37,7 +37,7 @@ const NavBar = () => {
     return (
         <header>
             <AppBar position="static" sx={{ margin: 0 }}>
-                <Container maxWidth="xl">
+                <Container >
                     <Toolbar disableGutters>
                         <Logo />
                         <NavMenuResp pages={pages}

@@ -6,7 +6,7 @@ import CarouselComponent from "../components/carousel/Carousel";
 import LoadingContainer from "../components/loadingProduct.tsx/LoadingContainer";
 import LoadingError from "../components/loadingProduct.tsx/LoadingError";
 import NewsLetter from "../components/newsLetter/NewsLetter";
-import ProductsRow from "../components/ProductsRow.tsx/ProductsRow";
+import ProductsRow from "../components/ProductsContainer/ProductsRow";
 
 const Home: React.FC = () => {
 
