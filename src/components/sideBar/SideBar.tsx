@@ -1,10 +1,14 @@
 import { Box, Button, Typography } from '@mui/material';
 import axios from 'axios';
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from 'react-query';
-import ProductCardMin from '../ProductCard.tsx/ProductsCardMin';
+import { Link } from 'react-router-dom';
+import LoadingContainerMin from '../loadingProduct.tsx/LoadingContainerMin';
+import ProductsMinContainer from '../ProductsContainer/ProductsMinContainer';
 
 const SideBar: React.FC = () => {
+
+    const categories: string[] = ["category1", "category2", "category3", "category4"]
 
     const bestProductData = useQuery(['products', 'best'], async () => {
         const data = await axios.get('http://localhost:5000/api/products/bestProducts')
@@ -16,47 +20,26 @@ const SideBar: React.FC = () => {
     }
 
     return (
-        <Box sx={{ padding: "2rem", width: "100%" }}>
+        <Box sx={{ width: "100%", margin: "1rem 0" }}>
             <Box>
-                <Typography variant='h6' sx={{ textAlign: 'center', color: 'primary.main' }} >
+                <Typography variant='h6' sx={{ textAlign: 'left', color: 'primary.main' }} >
                     Categories
                 </Typography>
             </Box>
 
-            <Button
+            {
+                categories.map((category, key) => (
+                    <Link to={`/products/${category}`} key={key} >
+                        <Button sx={{ display: 'block', width: '100%', textAlign: 'left', height: "3rem" }} color="primary">
+                            {category}
+                        </Button>
+                    </Link>
+                ))
+            }
 
-                sx={{ display: 'block', width: '100%', textAlign: 'center', height: "3rem" }}
-                color="primary"
-            >
-                category1
-            </Button>
-            <Button
-                sx={{ display: 'block', width: '100%', textAlign: 'center', height: "3rem" }}
-            >
-                category1
-            </Button>
-            <Button
-                sx={{ display: 'block', width: '100%', textAlign: 'center', height: "3rem" }}
-            >
-                category1
-            </Button>
-            <Button
-                sx={{ display: 'block', width: '100%', textAlign: 'center', height: "3rem" }}
-            >
-                category1
-            </Button>
             <Box>
-                {bestProductData.data &&
-                    sliceData(bestProductData.data?.data.bestProducts).map((product: any, key: any) => (
-                        <ProductCardMin key={key}
-                            name={product.productName}
-                            description={product.description}
-                            price={product.price}
-                            category={product.productCategory}
-                            image={product.image} />
-                    ))
-                }
-
+                {bestProductData.isLoading && <LoadingContainerMin />}
+                {bestProductData.data && <ProductsMinContainer products={sliceData(bestProductData.data?.data.bestProducts)} />}
             </Box>
 
         </Box >
