@@ -75,7 +75,7 @@ const App: React.FC = () => {
             logIn: login,
             logOut: logout
           }}>
-            <QueryClientProvider client={queryClient}>
+            <QueryClientProvider client={queryClient} contextSharing={true}>
               <NavBar />
               <Routes>
                 <Route path="/" element={<Home />} />
