@@ -1,19 +1,24 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import axios from 'axios';
 import React from 'react'
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
+import LoadingCategories from '../loadingProduct.tsx/LoadingCategories';
 import LoadingContainerMin from '../loadingProduct.tsx/LoadingContainerMin';
 import ProductsMinContainer from '../ProductsContainer/ProductsMinContainer';
+import SideBarCategories from './SideBarCategories';
 
 const SideBar: React.FC = () => {
-
-    const categories: string[] = ["category1", "category2", "category3", "category4"]
 
     const bestProductData = useQuery(['products', 'best'], async () => {
         const data = await axios.get('http://localhost:5000/api/products/bestProducts')
         return data;
     });
+
+    const categories = useQuery("categories", async () => {
+        const data = await axios.get('http://localhost:5000/api/category/')
+        return data;
+    })
+    console.log(categories)
 
     const sliceData = (dataArray: any) => {
         return (dataArray.slice(0, 3));
@@ -27,15 +32,8 @@ const SideBar: React.FC = () => {
                 </Typography>
             </Box>
 
-            {
-                categories.map((category, key) => (
-                    <Link to={`/products/${category}`} key={key} >
-                        <Button sx={{ display: 'block', width: '100%', textAlign: 'left', height: "3rem" }} color="primary">
-                            {category}
-                        </Button>
-                    </Link>
-                ))
-            }
+            {categories.isLoading && <LoadingCategories />}
+            {categories.data && <SideBarCategories categories={categories.data?.data.categories} />}
 
             <Box>
                 {bestProductData.isLoading && <LoadingContainerMin />}
