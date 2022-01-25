@@ -1,26 +1,22 @@
 import { Box, Button, Typography } from '@mui/material';
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useQuery } from 'react-query';
 import ProductCardMin from '../ProductCard.tsx/ProductsCardMin';
 
-interface Props {
-    name: string;
-    description: string;
-    price: Number;
-    category: string;
-    image: string;
-}
+const SideBar: React.FC = () => {
 
-const SideBar: React.FC<Props> = ({ name, description, price, category, image }) => {
+    const bestProductData = useQuery(['products', 'best'], async () => {
+        const data = await axios.get('http://localhost:5000/api/products/bestProducts')
+        return data;
+    });
 
-    const [expanded, setExpanded] = useState<string | false>(false);
-
-    const handleChange =
-        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-            setExpanded(isExpanded ? panel : false);
-        };
+    const sliceData = (dataArray: any) => {
+        return (dataArray.slice(0, 3));
+    }
 
     return (
-        <Box sx={{ padding: "2rem", /*borderStyle: "none solid none none ", borderColor: "primary.main", borderWidth: '2px'*/ }}>
+        <Box sx={{ padding: "2rem", width: "100%" }}>
             <Box>
                 <Typography variant='h6' sx={{ textAlign: 'center', color: 'primary.main' }} >
                     Categories
@@ -50,12 +46,17 @@ const SideBar: React.FC<Props> = ({ name, description, price, category, image })
                 category1
             </Button>
             <Box>
-                <ProductCardMin
-                    name={name}
-                    description={description}
-                    price={price}
-                    category={category}
-                    image={image} />
+                {bestProductData.data &&
+                    sliceData(bestProductData.data?.data.bestProducts).map((product: any, key: any) => (
+                        <ProductCardMin key={key}
+                            name={product.productName}
+                            description={product.description}
+                            price={product.price}
+                            category={product.productCategory}
+                            image={product.image} />
+                    ))
+                }
+
             </Box>
 
         </Box >
