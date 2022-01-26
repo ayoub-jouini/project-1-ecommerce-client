@@ -9,13 +9,20 @@ import NavMenu from "./NavMenu";
 import NavMenuResp from "./NavMenuResp";
 import Logo from "./Logo";
 import LogoResp from "./LogoResp";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const pages: string[] = ['Promotions', 'News', 'Blog', 'About Us', 'Contact'];
-const categories: string[] = ['mrewel', 'srewel', 'trabech'];
 
 
 
 const NavBar = () => {
+
+    const categories = useQuery("categories", async () => {
+        const data = await axios.get('http://localhost:5000/api/category/')
+        return data;
+    })
+
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -46,12 +53,16 @@ const NavBar = () => {
                             anchorElNav={anchorElNav}
                         />
                         <LogoResp />
-                        <NavMenu pages={pages}
-                            categories={categories}
-                            anchorElUser={anchorElUser}
-                            handleOpenUserMenu={handleOpenUserMenu}
-                            handleCloseNavMenu={handleCloseNavMenu}
-                            handleCloseUserMenu={handleCloseUserMenu} />
+                        {
+                            categories.data &&
+                            <NavMenu pages={pages}
+                                categories={categories.data?.data.categories}
+                                anchorElUser={anchorElUser}
+                                handleOpenUserMenu={handleOpenUserMenu}
+                                handleCloseNavMenu={handleCloseNavMenu}
+                                handleCloseUserMenu={handleCloseUserMenu} />
+                        }
+
                         <SearchBar />
                         <ShoppingCart />
 

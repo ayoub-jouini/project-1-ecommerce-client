@@ -2,9 +2,10 @@ import React from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 
 interface Props {
-    categories: string[];
+    categories: any;
     anchorElUser: HTMLElement | null;
     handleCloseNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
     handleCloseUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
@@ -28,10 +29,12 @@ const ProductsMenu: React.FC<Props> = ({ categories, anchorElUser, handleCloseNa
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
         >
-            {categories.map((category) => (
-                <MenuItem key={category} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{category}</Typography>
-                </MenuItem>
+            {categories.map((category: any, key: any) => (
+                <Link to={`/products/${category.categoryName}`} key={key}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{category.categoryName}</Typography>
+                    </MenuItem>
+                </Link>
             ))}
         </Menu>
     );
