@@ -25,7 +25,7 @@ const SideBar: React.FC = () => {
     }
 
     return (
-        <Box sx={{ width: "100%", margin: "1rem 0" }}>
+        <Box sx={{ width: "100%", margin: "1.5rem 0" }}>
             <Box>
                 <Typography variant='h6' sx={{ textAlign: 'left', color: 'primary.main' }} >
                     Categories

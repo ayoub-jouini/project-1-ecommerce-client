@@ -11,7 +11,7 @@ const SideBarCategories: React.FC<Props> = ({ categories }) => {
         <Box>
             {
                 categories.map((category: any, key: any) => (
-                    <Link to={`/products/${category}`} key={key} >
+                    <Link to={`/products/${category.categoryName}`} key={key} >
                         <Button sx={{ display: 'block', width: '100%', textAlign: 'left', height: "3rem" }} color="primary">
                             {category.categoryName}
                         </Button>
