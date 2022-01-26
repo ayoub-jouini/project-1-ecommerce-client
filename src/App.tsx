@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import News from './pages/News';
 import NotFound from './pages/NotFound';
-import Product from './pages/Product';
+import Product from './components/ProductsContainer/Product';
 import Products from './pages/Products';
 import Promotions from './pages/Promotions';
 import LogIn from './pages/LogIn';
@@ -21,6 +21,7 @@ import Footer from './components/footer/Footer';
 
 import AuthContext from './utils/auth-context';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import ProductsContainer from './components/ProductsContainer/ProductsContainer';
 
 interface Theme {
   palette: {
@@ -84,8 +85,11 @@ const App: React.FC = () => {
                 <Route path="news" element={<News />} />
                 <Route path="aboutus" element={<AboutUs />} />
                 <Route path="contact" element={<Contact />} />
-                <Route path="products/:category" element={<Products />} />
-                <Route path="products/:category/:product" element={<Product />} />
+                <Route path="products" element={<Products />}>
+                  <Route index element={<ProductsContainer />} />
+                  <Route path=":category" element={<ProductsContainer />} />
+                  <Route path=":category/:product" element={<Product />} />
+                </Route>
                 <Route path="admin-dashboard" element={dashboardRoute} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
