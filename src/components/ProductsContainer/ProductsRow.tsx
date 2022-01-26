@@ -22,9 +22,10 @@ const ProductsRow: React.FC<Props> = ({ products }) => {
         <Box>
             <Grid container spacing={7} >
                 {
-                    products.map((product, key) => (
+                    products.map((product: any, key: any) => (
                         <Grid item xs={12} sm={3} key={key}>
                             <ProductCard
+                                id={product.id}
                                 name={product.productName}
                                 description={product.description}
                                 category={product.productCategory}
