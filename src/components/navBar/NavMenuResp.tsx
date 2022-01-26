@@ -6,15 +6,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface Props {
     pages: string[];
+    categories: any;
     handleOpenNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
     handleCloseNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
     anchorElNav: HTMLElement | null;
 }
 
-const NavMenuResp: React.FC<Props> = ({ pages, handleOpenNavMenu,
+const NavMenuResp: React.FC<Props> = ({ pages, categories, handleOpenNavMenu,
     handleCloseNavMenu, anchorElNav }) => {
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -46,9 +49,26 @@ const NavMenuResp: React.FC<Props> = ({ pages, handleOpenNavMenu,
                     display: { xs: 'block', md: 'none' },
                 }}
             >
-                <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">products</Typography>
-                </MenuItem>
+
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography textAlign="center">products</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        {
+                            categories.map((category: any, key: any) => (
+                                <MenuItem onClick={handleCloseNavMenu} key={key}>
+                                    {category.categoryName}
+                                </MenuItem >
+                            ))
+                        }
+
+                    </AccordionDetails>
+                </Accordion>
 
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>

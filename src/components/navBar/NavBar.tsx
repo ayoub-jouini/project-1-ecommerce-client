@@ -11,6 +11,7 @@ import Logo from "./Logo";
 import LogoResp from "./LogoResp";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const pages: string[] = ['Promotions', 'News', 'Blog', 'About Us', 'Contact'];
 
@@ -46,13 +47,21 @@ const NavBar = () => {
             <AppBar position="static" sx={{ margin: 0 }}>
                 <Container >
                     <Toolbar disableGutters>
-                        <Logo />
-                        <NavMenuResp pages={pages}
-                            handleOpenNavMenu={handleOpenNavMenu}
-                            handleCloseNavMenu={handleCloseNavMenu}
-                            anchorElNav={anchorElNav}
-                        />
-                        <LogoResp />
+                        <Link to="/">
+                            <Logo />
+                        </Link>
+                        {
+                            categories.data &&
+                            <NavMenuResp pages={pages}
+                                categories={categories.data?.data.categories}
+                                handleOpenNavMenu={handleOpenNavMenu}
+                                handleCloseNavMenu={handleCloseNavMenu}
+                                anchorElNav={anchorElNav}
+                            />
+                        }
+                        <Link to="/">
+                            <LogoResp />
+                        </Link>
                         {
                             categories.data &&
                             <NavMenu pages={pages}
