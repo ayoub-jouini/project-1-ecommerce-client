@@ -16,7 +16,7 @@ const Products: React.FC = () => {
                 <Box sx={{ width: "25%", display: { xs: 'none', md: 'flex' } }}>
                     <SideBar />
                 </Box>
-                <Box sx={{ width: { xs: "100%", md: "72%" } }} >
+                <Box sx={{ width: { xs: "100%", md: "72%" }, margin: "1.5rem 0" }} >
                     <Outlet />
                 </Box>
             </Container>

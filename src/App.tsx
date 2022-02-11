@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import News from './pages/News';
 import NotFound from './pages/NotFound';
-import Product from './components/ProductsContainer/Product';
+import Product from './components/ProductsContainer/ProductDetails';
 import Products from './pages/Products';
 import Promotions from './pages/Promotions';
 import LogIn from './pages/LogIn';
