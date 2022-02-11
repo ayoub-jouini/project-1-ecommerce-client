@@ -1,12 +1,12 @@
-import { Box, Button, Card, CardActionArea, CardMedia, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import ProductDetailsForm from "./ProductDetailsForm";
 
 
-const ProductDetails: React.FC = ({ }) => {
+const ProductDetails: React.FC = () => {
 
     const params = useParams();
     const productCategory = params.category;
