@@ -12,6 +12,7 @@ const ProductsMinContainer: React.FC<Props> = ({ products }) => {
             {
                 products.map((product: any, key: any) => (
                     <ProductCardMin key={key}
+                        id={product.id}
                         name={product.productName}
                         description={product.description}
                         price={product.price}
