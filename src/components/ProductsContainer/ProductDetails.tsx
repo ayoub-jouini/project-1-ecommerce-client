@@ -1,8 +1,10 @@
-import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardMedia, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import ProductDetailsForm from "./ProductDetailsForm";
+
 
 const ProductDetails: React.FC = ({ }) => {
 
@@ -15,9 +17,7 @@ const ProductDetails: React.FC = ({ }) => {
         return data;
     })
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-    }
+
 
     return (
         <Box sx={{ width: "100%", color: "primary.dark" }}>
@@ -44,16 +44,17 @@ const ProductDetails: React.FC = ({ }) => {
                                 <Typography variant="h4" component="h2" color="secondary.dark" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.price} TND</Typography>
                                 <Typography variant="body1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.description}</Typography>
                             </Box>
-                            <form onSubmit={handleSubmit}>
+                            <Box sx={{ width: "100%" }} >
+                                <ProductDetailsForm productSize={products.data?.data.product.size} />
 
-                            </form>
+                            </Box>
                         </Box>
                     </Box>
                 )
             }
 
 
-        </Box>
+        </Box >
     );
 }
 
