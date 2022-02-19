@@ -1,9 +1,23 @@
-import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardMedia, styled, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import LoadingError from "../loadingProduct.tsx/LoadingError";
+import LoadingProductDetails from "../loadingProduct.tsx/LoadingProductDetails";
+import LoadingRow from "../loadingProduct.tsx/LoadingRow";
 import ProductDetailsForm from "./ProductDetailsForm";
+import ProductsRow from "./ProductsRow";
+
+const BoxStyle = styled('div')(({ theme }) => ({
+    padding: theme.spacing(1),
+    [theme.breakpoints.up('sm')]: {
+        height: "550px",
+    },
+    [theme.breakpoints.down('sm')]: {
+        height: "2050px",
+    }
+}));
 
 
 const ProductDetails: React.FC = () => {
@@ -17,10 +31,20 @@ const ProductDetails: React.FC = () => {
         return data;
     })
 
+    const newProductsData = useQuery(['products', 'new'], async () => {
+        const data = await axios.get('http://localhost:5000/api/products/newproducts');
+        return data;
+    })
+
+    const sliceData = (dataArray: any) => {
+        return (dataArray.slice(0, 3));
+    }
 
 
     return (
         <Box sx={{ width: "100%", color: "primary.dark" }}>
+            {products.isLoading && <LoadingProductDetails />}
+            {products.isError && <LoadingError />}
             {
                 products.data && (
                     <Box sx={{ width: "100%", display: "flex" }}>
@@ -52,7 +76,16 @@ const ProductDetails: React.FC = () => {
                     </Box>
                 )
             }
-
+            <Box sx={{ marginTop: "3rem" }}>
+                <BoxStyle>
+                    <Box sx={{ width: "100%", textAlign: "center", marginBottom: "50px" }} >
+                        <Typography variant='h4' color="primary">NEW-Products</Typography>
+                    </Box>
+                    {newProductsData.isLoading && <LoadingRow />}
+                    {newProductsData.isError && <LoadingError />}
+                    {newProductsData.data && <ProductsRow products={sliceData(newProductsData.data?.data.newProducts)} />}
+                </BoxStyle>
+            </Box>
 
         </Box >
     );
