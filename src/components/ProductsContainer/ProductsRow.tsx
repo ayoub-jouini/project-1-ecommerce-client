@@ -18,12 +18,20 @@ interface Props {
 }
 
 const ProductsRow: React.FC<Props> = ({ products }) => {
+
+    let sm: number;
+    if (products.length === 3) {
+        sm = 4;
+    } else {
+        sm = 3;
+    }
+
     return (
         <Box>
             <Grid container spacing={7} >
                 {
                     products.map((product: any, key: any) => (
-                        <Grid item xs={12} sm={3} key={key}>
+                        <Grid item xs={12} sm={sm} key={key}>
                             <ProductCard
                                 id={product.id}
                                 name={product.productName}
