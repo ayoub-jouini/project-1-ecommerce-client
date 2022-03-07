@@ -34,7 +34,7 @@ const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
 
     return (
         <form onSubmit={handleSubmit} style={{ width: "100%" }} >
-            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
                 <FormControl sx={{ width: "40%" }}>
                     <InputLabel id="demo-simple-select-label1">Size</InputLabel>
                     <Select
@@ -74,7 +74,7 @@ const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
                     </Box>
                 </FormControl>
             </Box>
-            <Box sx={{ width: "100%", height: "50px", margin: "20px" }} >
+            <Box sx={{ width: "100%", height: "50px", margin: "20px 0" }} >
                 <Button onClick={handleSubmit} variant="contained" sx={{ width: "100%", height: "100%" }} >Add to card</Button>
             </Box>
         </form>
