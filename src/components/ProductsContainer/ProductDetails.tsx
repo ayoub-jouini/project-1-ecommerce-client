@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardMedia, styled, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardMedia, Grid, styled, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
@@ -47,8 +47,8 @@ const ProductDetails: React.FC = () => {
             {products.isError && <LoadingError />}
             {
                 products.data && (
-                    <Box sx={{ width: "100%", display: "flex" }}>
-                        <Box sx={{ width: "40%" }}>
+                    <Grid container sx={{ width: "100%" }}>
+                        <Grid item xs={12} md={5}>
                             <Card>
                                 <CardActionArea>
                                     <CardMedia
@@ -58,8 +58,8 @@ const ProductDetails: React.FC = () => {
                                     />
                                 </CardActionArea>
                             </Card>
-                        </Box>
-                        <Box sx={{ width: "50%", margin: " 0 1.5rem" }}>
+                        </Grid>
+                        <Grid xs={12} md={6} sx={{ margin: " 0 1.5rem" }}>
                             <Box>
                                 <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
                                     <Typography variant="h3" component="h1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.productName}</Typography>
@@ -72,8 +72,8 @@ const ProductDetails: React.FC = () => {
                                 <ProductDetailsForm productSize={products.data?.data.product.size} />
 
                             </Box>
-                        </Box>
-                    </Box>
+                        </Grid>
+                    </Grid>
                 )
             }
             <Box sx={{ marginTop: "3rem" }}>
