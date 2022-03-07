@@ -3,7 +3,11 @@ import { Box } from "@mui/system";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-const Breadcrumb: React.FC = () => {
+interface Props {
+    pageName?: string;
+}
+
+const Breadcrumb: React.FC<Props> = ({ pageName }) => {
 
     const params = useParams();
 
@@ -21,28 +25,31 @@ const Breadcrumb: React.FC = () => {
             }}>
                 <Box sx={{ display: { xs: "none", md: "flex" } }}>
                     <Typography variant="h5">
-                        {params.category}
+                        {params.category || pageName}
                     </Typography>
                 </Box>
-                <Breadcrumbs aria-label="breadcrumb">
-                    <Link to="/">
-                        <Typography variant="body1" color="#ECECEC">
-                            Home
-                        </Typography>
-                    </Link>
-                    <Link
-                        to=""
-                    >
-                        <Typography variant="body1" color="#ECECEC">
-                            Products
-                        </Typography>
-                    </Link>
-                    <Link to="">
-                        <Typography variant="body1" color="#ECECEC">
-                            {params.category}
-                        </Typography>
-                    </Link>
-                </Breadcrumbs>
+                {
+                    !pageName && <Breadcrumbs aria-label="breadcrumb">
+                        <Link to="/">
+                            <Typography variant="body1" color="#ECECEC">
+                                Home
+                            </Typography>
+                        </Link>
+                        <Link
+                            to=""
+                        >
+                            <Typography variant="body1" color="#ECECEC">
+                                Products
+                            </Typography>
+                        </Link>
+                        <Link to="">
+                            <Typography variant="body1" color="#ECECEC">
+                                {params.category}
+                            </Typography>
+                        </Link>
+                    </Breadcrumbs>
+                }
+
             </Container>
         </Box>
 
