@@ -7,7 +7,6 @@ import NewsLetter from "../components/newsLetter/NewsLetter";
 import SideBar from "../components/sideBar/SideBar";
 
 const Products: React.FC = () => {
-
     return (
         <Box sx={{ width: "100%" }}>
 
