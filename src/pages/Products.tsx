@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
+import NewsLetter from "../components/newsLetter/NewsLetter";
 import SideBar from "../components/sideBar/SideBar";
 
 const Products: React.FC = () => {
@@ -20,6 +21,7 @@ const Products: React.FC = () => {
                     <Outlet />
                 </Box>
             </Container>
+            <NewsLetter />
         </Box >
     );
 }
