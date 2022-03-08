@@ -3,7 +3,6 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
-import { Outlet } from "react-router-dom";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 import LoadingContainer from "../components/loadingProduct.tsx/LoadingContainer";
 import LoadingError from "../components/loadingProduct.tsx/LoadingError";
