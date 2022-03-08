@@ -11,7 +11,7 @@ interface Props {
 
 }
 
-const ProductsContainer: React.FC<Props> = ({ }) => {
+const ProductsContainer: React.FC<Props> = () => {
 
     const params = useParams();
 
