@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const pages: string[] = ['Promotions', 'News', 'Blog', 'About Us', 'Contact'];
+const pages: string[] = ['Promotions', 'News', 'Blog', 'About', 'Contact'];
 
 
 
