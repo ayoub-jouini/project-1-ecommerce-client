@@ -22,6 +22,8 @@ import Footer from './components/footer/Footer';
 import AuthContext from './utils/auth-context';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ProductsContainer from './components/ProductsContainer/ProductsContainer';
+import Cart from './pages/Cart';
+import CartContext from './utils/Cart-context';
 
 interface Theme {
   palette: {
@@ -76,25 +78,28 @@ const App: React.FC = () => {
             logIn: login,
             logOut: logout
           }}>
-            <QueryClientProvider client={queryClient} contextSharing={true}>
-              <NavBar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="promotions" element={<Promotions />} />
-                <Route path="blog" element={<Blog />} />
-                <Route path="news" element={<News />} />
-                <Route path="about" element={<AboutUs />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="products" element={<Products />}>
-                  <Route index element={<ProductsContainer />} />
-                  <Route path=":category" element={<ProductsContainer />} />
-                  <Route path=":category/:product" element={<Product />} />
-                </Route>
-                <Route path="admin-dashboard" element={dashboardRoute} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </QueryClientProvider>
+            <CartContext.Provider value={{ products: [], totalPrice: 0 }}>
+              <QueryClientProvider client={queryClient} contextSharing={true}>
+                <NavBar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="promotions" element={<Promotions />} />
+                  <Route path="blog" element={<Blog />} />
+                  <Route path="news" element={<News />} />
+                  <Route path="about" element={<AboutUs />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route path="products" element={<Products />}>
+                    <Route index element={<ProductsContainer />} />
+                    <Route path=":category" element={<ProductsContainer />} />
+                    <Route path=":category/:product" element={<Product />} />
+                  </Route>
+                  <Route path="cart" element={<Cart />} />
+                  <Route path="admin-dashboard" element={dashboardRoute} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </QueryClientProvider>
+            </CartContext.Provider>
           </AuthContext.Provider>
         </div>
       </ThemeProvider>
