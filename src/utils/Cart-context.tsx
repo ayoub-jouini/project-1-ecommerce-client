@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useState } from 'react'
 
 type CartProviderProps = { children: React.ReactNode }
 
@@ -41,6 +41,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
             cartArray[productIndex].amount = cartArray[productIndex].amount + 1;
         }
         setCart(cartArray);
+        console.log(cart)
     }
 
     const removeFromCart = (productId: any) => {
