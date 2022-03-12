@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
-import React, { useContext } from 'react'
+import React from 'react'
 import { useCart } from '../../utils/Cart-Context';
 import CartCard from './CartCard';
 
 const CartProducts: React.FC = () => {
 
-    const { cart, addToCart, removeFromCart } = useCart()
+    const { cart } = useCart()
 
     return (
         <Box>
