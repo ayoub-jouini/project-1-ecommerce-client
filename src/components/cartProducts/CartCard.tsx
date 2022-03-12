@@ -35,7 +35,7 @@ const CartCard: React.FC<Props> = ({ productImage, productName, productSize, pro
 
     useEffect(() => {
         setTotalPrice(productPrice * amount)
-    }, [amount])
+    }, [amount, productPrice])
 
     return (
         <Card sx={{ display: "flex", justifyContent: "space-between", margin: "1rem 0" }}>
