@@ -23,7 +23,7 @@ import AuthContext from './utils/auth-context';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ProductsContainer from './components/ProductsContainer/ProductsContainer';
 import Cart from './pages/Cart';
-import CartContext from './utils/Cart-context';
+import { CartProvider } from './utils/Cart-Context';
 
 interface Theme {
   palette: {
@@ -78,8 +78,8 @@ const App: React.FC = () => {
             logIn: login,
             logOut: logout
           }}>
-            <CartContext.Provider value={{ products: [], totalPrice: 0 }}>
-              <QueryClientProvider client={queryClient} contextSharing={true}>
+            <QueryClientProvider client={queryClient} contextSharing={true}>
+              <CartProvider>
                 <NavBar />
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -98,8 +98,8 @@ const App: React.FC = () => {
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
-              </QueryClientProvider>
-            </CartContext.Provider>
+              </CartProvider>
+            </QueryClientProvider>
           </AuthContext.Provider>
         </div>
       </ThemeProvider>
