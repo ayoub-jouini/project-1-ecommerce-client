@@ -17,7 +17,7 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, removeFromCart, produc
 
     useEffect(() => {
         setTotalPrice(totalPrice * count)
-    }, [count])
+    }, [count, totalPrice])
 
     const plusHandleChange = () => {
         setCount(count + 1)
