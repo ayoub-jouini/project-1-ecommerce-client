@@ -1,8 +1,9 @@
 import { Box, Card, CardActionArea, CardMedia, Grid, styled, Typography } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { useCart } from "../../utils/Cart-Context";
 import LoadingError from "../loadingProduct.tsx/LoadingError";
 import LoadingProductDetails from "../loadingProduct.tsx/LoadingProductDetails";
 import LoadingRow from "../loadingProduct.tsx/LoadingRow";
@@ -22,6 +23,8 @@ const BoxStyle = styled('div')(({ theme }) => ({
 
 const ProductDetails: React.FC = () => {
 
+    const { cart, addToCart, removeFromCart } = useCart()
+
     const params = useParams();
     const productCategory = params.category;
     const productId = params.product;
@@ -35,6 +38,8 @@ const ProductDetails: React.FC = () => {
         const data = await axios.get('http://localhost:5000/api/products/newproducts');
         return data;
     })
+
+
 
     const sliceData = (dataArray: any) => {
         return (dataArray.slice(0, 3));
@@ -69,8 +74,9 @@ const ProductDetails: React.FC = () => {
                                 <Typography variant="body1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.description}</Typography>
                             </Box>
                             <Box sx={{ width: "100%" }} >
-                                <ProductDetailsForm productSize={products.data?.data.product.size} />
-
+                                <ProductDetailsForm product={products.data?.data.product}
+                                    addToCart={addToCart}
+                                    removeFromCart={removeFromCart} />
                             </Box>
                         </Grid>
                     </Grid>
