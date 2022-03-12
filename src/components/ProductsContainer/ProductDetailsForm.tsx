@@ -1,20 +1,23 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface Props {
-    productSize: string[];
+    product: any;
+    addToCart: (product: any) => void;
+    removeFromCart: (productId: string) => void;
 }
 
-const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
+const ProductDetailsForm: React.FC<Props> = ({ addToCart, removeFromCart, product }) => {
 
     const [size, setSize] = useState('');
     const [count, setCount] = useState<number>(1);
+    const [totalPrice, setTotalPrice] = useState(product.price)
 
-    const handleChange = (event: any) => {
-        setSize(event.target.value as string);
-    };
+    useEffect(() => {
+        setTotalPrice(totalPrice * count)
+    }, [count])
 
     const plusHandleChange = () => {
         setCount(count + 1)
@@ -28,12 +31,12 @@ const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
         setCount(event.target.value)
     }
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-    }
+    const handleChange = (event: any) => {
+        setSize(event.target.value as string);
+    };
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: "100%" }} >
+        <form style={{ width: "100%" }} >
             <Box sx={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
                 <FormControl sx={{ width: "40%" }}>
                     <InputLabel id="demo-simple-select-label1">Size</InputLabel>
@@ -46,7 +49,7 @@ const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
                         sx={{ width: "100%" }}
                     >
                         {
-                            productSize.map((s: any, key: any) => (
+                            product.size.map((s: any, key: any) => (
                                 <MenuItem key={key} value={s}>{s}</MenuItem>
                             ))
                         }
@@ -75,7 +78,16 @@ const ProductDetailsForm: React.FC<Props> = ({ productSize }) => {
                 </FormControl>
             </Box>
             <Box sx={{ width: "100%", height: "50px", margin: "20px 0" }} >
-                <Button onClick={handleSubmit} variant="contained" sx={{ width: "100%", height: "100%" }} >Add to card</Button>
+                <Button onClick={() => {
+                    addToCart({
+                        id: product.id,
+                        image: product.image,
+                        name: product.name,
+                        size: size,
+                        amount: count,
+                        price: product.price
+                    })
+                }} variant="contained" sx={{ width: "100%", height: "100%" }} >Add to card</Button>
             </Box>
         </form>
     );
