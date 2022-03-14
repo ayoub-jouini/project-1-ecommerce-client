@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./styles/app.css"
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -24,6 +24,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import ProductsContainer from './components/ProductsContainer/ProductsContainer';
 import Cart from './pages/Cart';
 import { CartProvider } from './utils/Cart-Context';
+import TemporaryDrawer from './components/cartProducts/SideCart';
 
 interface Theme {
   palette: {
@@ -66,6 +67,22 @@ const App: React.FC = () => {
     dashboardRoute = (<CreateProduct />)
   }
 
+  //sideBar toggler
+  const [toggle, setToggle] = useState(false);
+  const toggleDrawer =
+    (open: boolean) =>
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
+
+        setToggle(open);
+      };
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
@@ -80,7 +97,7 @@ const App: React.FC = () => {
           }}>
             <QueryClientProvider client={queryClient} contextSharing={true}>
               <CartProvider>
-                <NavBar />
+                <NavBar toggleDrawer={toggleDrawer} />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="promotions" element={<Promotions />} />
@@ -97,6 +114,7 @@ const App: React.FC = () => {
                   <Route path="admin-dashboard" element={dashboardRoute} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+                <TemporaryDrawer toggleDrawer={toggleDrawer} toggle={toggle} />
                 <Footer />
               </CartProvider>
             </QueryClientProvider>
