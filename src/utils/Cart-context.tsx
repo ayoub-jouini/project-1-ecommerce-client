@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type CartProviderProps = { children: React.ReactNode }
 
@@ -26,8 +26,6 @@ const CartProvider = ({ children }: CartProviderProps) => {
             }
         }
         return index;
-
-
     }
 
     const addToCart = (product: any) => {
@@ -41,16 +39,26 @@ const CartProvider = ({ children }: CartProviderProps) => {
             cartArray[productIndex].amount = cartArray[productIndex].amount + 1;
         }
         setCart(cartArray);
-        console.log(cart)
     }
 
     const removeFromCart = (productId: any) => {
         let cartArray = cart;
         const productIndex = searchProductIndex(productId);
-        const cartArray1 = cartArray.slice(0, productIndex);
-        const cartArray2 = cartArray.slice(productIndex + 1);
-        // @ts-ignore
-        setCart(cartArray1.push(cartArray2));
+
+        if (productIndex === 0) {
+            const cartArray2 = cartArray.slice(productIndex + 1);
+            setCart(cartArray2);
+        } else {
+            const cartArray1 = cartArray.slice(0, productIndex);
+            const cartArray2 = cartArray.slice(productIndex + 1);
+            if (!cartArray2) {
+                setCart(cartArray1)
+            } else {
+                cartArray1.concat(cartArray2)
+                setCart(cartArray1);
+            }
+        }
+
     }
 
     const totalPrice = () => {
@@ -62,6 +70,8 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
         return tPrice;
     }
+
+    useEffect(() => { console.log(cart) }, [])
 
     return (
         <CartStateContext.Provider value={{ cart, totalPrice, addToCart, removeFromCart }}>
