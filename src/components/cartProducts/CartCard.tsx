@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useCart } from '../../utils/Cart-Context';
 
 interface Props {
+    productId: string;
     productImage: string;
     productName: string;
     productSize: string;
@@ -12,7 +14,9 @@ interface Props {
     productAmount: number;
 }
 
-const CartCard: React.FC<Props> = ({ productImage, productName, productSize, productPrice, productAmount }) => {
+const CartCard: React.FC<Props> = ({ productId, productImage, productName, productSize, productPrice, productAmount }) => {
+
+    const { removeFromCart } = useCart();
 
     const [amount, setAmount] = useState<number>(productAmount);
     const [totalPrice, setTotalPrice] = useState<number>(productPrice * productAmount)
@@ -27,10 +31,6 @@ const CartCard: React.FC<Props> = ({ productImage, productName, productSize, pro
 
     const amounthandleChange = (event: any) => {
         setAmount(event.target.value)
-    }
-
-    const handleDeleteProduct = () => {
-
     }
 
     useEffect(() => {
@@ -78,7 +78,7 @@ const CartCard: React.FC<Props> = ({ productImage, productName, productSize, pro
                         <Box sx={{ marginLeft: { xs: "2.8rem" } }}>
                             <Typography variant="h5" component="h4"> {totalPrice}TND</Typography>
                         </Box>
-                        <Box onClick={handleDeleteProduct}>
+                        <Box onClick={() => { removeFromCart(productId) }}>
                             <DeleteForeverIcon fontSize="large" sx={{ cursor: "pointer" }} />
                         </Box>
                     </Box>
