@@ -12,12 +12,15 @@ import LogoResp from "./LogoResp";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/system";
 
 const pages: string[] = ['Promotions', 'News', 'Blog', 'About', 'Contact'];
 
+interface Props {
+    toggleDrawer: (toggle: boolean) => any;
+}
 
-
-const NavBar = () => {
+const NavBar: React.FC<Props> = ({ toggleDrawer }) => {
 
     const categories = useQuery("categories", async () => {
         const data = await axios.get('http://localhost:5000/api/category/')
@@ -73,7 +76,9 @@ const NavBar = () => {
                         }
 
                         <SearchBar />
-                        <ShoppingCart />
+                        <Box onClick={toggleDrawer(true)}>
+                            <ShoppingCart />
+                        </Box>
 
                     </Toolbar>
                 </Container>
