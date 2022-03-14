@@ -6,10 +6,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 interface Props {
     product: any;
     addToCart: (product: any) => void;
-    removeFromCart: (productId: string) => void;
 }
 
-const ProductDetailsForm: React.FC<Props> = ({ addToCart, removeFromCart, product }) => {
+const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
 
     const [size, setSize] = useState('');
     const [count, setCount] = useState<number>(1);
@@ -80,7 +79,7 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, removeFromCart, produc
             <Box sx={{ width: "100%", height: "50px", margin: "20px 0" }} >
                 <Button onClick={() => {
                     addToCart({
-                        id: product.id,
+                        id: product._id,
                         image: product.image,
                         name: product.name,
                         size: size,

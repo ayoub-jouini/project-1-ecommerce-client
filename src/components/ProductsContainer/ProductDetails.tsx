@@ -23,7 +23,7 @@ const BoxStyle = styled('div')(({ theme }) => ({
 
 const ProductDetails: React.FC = () => {
 
-    const { cart, addToCart, removeFromCart } = useCart()
+    const { addToCart } = useCart()
 
     const params = useParams();
     const productCategory = params.category;
@@ -39,13 +39,9 @@ const ProductDetails: React.FC = () => {
         return data;
     })
 
-
-
     const sliceData = (dataArray: any) => {
         return (dataArray.slice(0, 3));
     }
-
-
     return (
         <Box sx={{ width: "100%", color: "primary.dark" }}>
             {products.isLoading && <LoadingProductDetails />}
@@ -75,8 +71,7 @@ const ProductDetails: React.FC = () => {
                             </Box>
                             <Box sx={{ width: "100%" }} >
                                 <ProductDetailsForm product={products.data?.data.product}
-                                    addToCart={addToCart}
-                                    removeFromCart={removeFromCart} />
+                                    addToCart={addToCart} />
                             </Box>
                         </Grid>
                     </Grid>
