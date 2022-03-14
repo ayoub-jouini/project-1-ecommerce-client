@@ -1,7 +1,5 @@
-import { Box, Button, Card, CardContent, CardMedia, FormControl, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useCart } from "../../utils/Cart-Context";
 
@@ -18,20 +16,11 @@ const SideCartElement: React.FC<Props> = ({ productId, productImage, productName
 
     const { removeFromCart } = useCart();
 
-    const [amount, setAmount] = useState<number>(productAmount);
     const [totalPrice, setTotalPrice] = useState<number>(productPrice * productAmount)
 
-    const plusHandleChange = () => {
-        setAmount(amount + 1)
-    }
-
-    const minusHandleChange = () => {
-        setAmount(amount - 1)
-    }
-
-    const amounthandleChange = (event: any) => {
-        setAmount(event.target.value)
-    }
+    useEffect(() => {
+        setTotalPrice(productPrice * productAmount)
+    }, [productAmount, productPrice])
 
     return (
         <Card sx={{ display: "flex", justifyContent: "space-between", margin: "1rem 0" }}>
@@ -59,7 +48,7 @@ const SideCartElement: React.FC<Props> = ({ productId, productImage, productName
                     </Box>
                 </Box>
                 <Box sx={{ float: "right" }}>
-                    <Typography variant="body2" >{amount}</Typography>
+                    <Typography variant="body2" >{productAmount}</Typography>
                 </Box>
             </CardContent>
         </Card>
