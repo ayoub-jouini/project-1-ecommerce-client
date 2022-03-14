@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 type CartProviderProps = { children: React.ReactNode }
 
@@ -70,8 +70,6 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
         return tPrice;
     }
-
-    useEffect(() => { console.log(cart) }, [])
 
     return (
         <CartStateContext.Provider value={{ cart, totalPrice, addToCart, removeFromCart }}>
