@@ -12,6 +12,7 @@ const CartProducts: React.FC = () => {
             {cart.map((product: any, key: any) => (
                 <CartCard
                     key={key}
+                    productId={product.id}
                     productImage={product.image}
                     productName={product.name}
                     productSize={product.size}
