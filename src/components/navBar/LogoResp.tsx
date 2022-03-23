@@ -8,7 +8,7 @@ const LogoResp: React.FC = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{ flexGrow: 1, marginRight: "1rem", display: { xs: 'flex', md: 'none' } }}
         >
             LOGO
         </Typography>
