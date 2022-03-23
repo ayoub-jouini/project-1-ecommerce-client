@@ -60,7 +60,7 @@ const ProductDetails: React.FC = () => {
                                 </CardActionArea>
                             </Card>
                         </Grid>
-                        <Grid xs={12} md={6} sx={{ margin: " 0 1.5rem" }}>
+                        <Grid item xs={12} md={6} sx={{ margin: " 0 1.5rem" }}>
                             <Box>
                                 <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
                                     <Typography variant="h3" component="h1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.productName}</Typography>

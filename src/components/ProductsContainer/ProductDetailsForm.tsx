@@ -13,10 +13,19 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
     const [size, setSize] = useState('');
     const [count, setCount] = useState<number>(1);
     const [totalPrice, setTotalPrice] = useState(product.price)
+    const [disabledToggel, setDisabledToggel] = useState<boolean>(true);
 
     useEffect(() => {
         setTotalPrice(totalPrice * count)
     }, [count, totalPrice])
+
+    useEffect(() => {
+        if (size !== '' && count > 0) {
+            setDisabledToggel(false)
+        } else {
+            setDisabledToggel(true)
+        }
+    }, [count, size])
 
     const plusHandleChange = () => {
         setCount(count + 1)
@@ -77,16 +86,16 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
                 </FormControl>
             </Box>
             <Box sx={{ width: "100%", height: "50px", margin: "20px 0" }} >
-                <Button onClick={() => {
+                <Button disabled={disabledToggel} onClick={() => {
                     addToCart({
                         id: product._id,
                         image: product.image,
-                        name: product.name,
+                        name: product.productName,
                         size: size,
                         amount: count,
                         price: product.price
                     })
-                }} variant="contained" sx={{ width: "100%", height: "100%" }} >Add to card</Button>
+                }} variant="contained" sx={{ width: "100%", height: "100%" }} >Add to cart</Button>
             </Box>
         </form>
     );
