@@ -34,7 +34,6 @@ const Footer: React.FC = () => {
                             <Box sx={{ marginBottom: "15px", display: "flex", alignItems: "center" }}>
                                 <AddLocationIcon sx={{ marginRight: "5px" }} />
                                 <Typography>
-                                    15, Rue Omar Ben Abed Aziz,
                                     Megrin Riadh
                                 </Typography>
                             </Box>
@@ -51,10 +50,16 @@ const Footer: React.FC = () => {
                                 </Typography>
                             </Box>
                             <Box sx={{ marginBottom: "15px", display: "flex" }}>
-                                <FacebookIcon sx={{ marginRight: '5px' }} />
-                                <InstagramIcon sx={{ marginRight: '5px' }} />
+                                <a href="https://www.facebook.com/ayoub.jouini.79" style={{ color: "white" }}>
+                                    <FacebookIcon sx={{ marginRight: '5px' }} />
+                                </a>
+                                <a href="https://www.instagram.com/ayoub_jouini/" style={{ color: "white" }}>
+                                    <InstagramIcon sx={{ marginRight: '5px' }} />
+                                </a>
                                 <TwitterIcon sx={{ marginRight: '5px' }} />
-                                <LinkedInIcon sx={{ marginRight: '5px' }} />
+                                <a href="https://www.linkedin.com/in/mohamed-ayoub-jouini-254152205/" style={{ color: "white" }}>
+                                    <LinkedInIcon sx={{ marginRight: '5px' }} />
+                                </a>
                             </Box>
                         </Grid>
                         {
