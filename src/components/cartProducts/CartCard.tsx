@@ -16,10 +16,14 @@ interface Props {
 
 const CartCard: React.FC<Props> = ({ productId, productImage, productName, productSize, productPrice, productAmount }) => {
 
-    const { removeFromCart } = useCart();
+    const { removeFromCart, changeAmount } = useCart();
 
     const [amount, setAmount] = useState<number>(productAmount);
     const [totalPrice, setTotalPrice] = useState<number>(productPrice * productAmount)
+
+    useEffect(() => {
+        changeAmount(productId, productSize, amount)
+    }, [amount, productId, productSize, changeAmount])
 
     const plusHandleChange = () => {
         setAmount(amount + 1)
