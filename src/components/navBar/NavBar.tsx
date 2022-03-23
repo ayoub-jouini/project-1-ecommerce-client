@@ -13,6 +13,8 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
+import { useCart } from "../../utils/Cart-Context";
+import { Typography } from "@mui/material";
 
 const pages: string[] = ['Promotions', 'News', 'Blog', 'About', 'Contact'];
 
@@ -21,6 +23,8 @@ interface Props {
 }
 
 const NavBar: React.FC<Props> = ({ toggleDrawer }) => {
+
+    const { quantity } = useCart();
 
     const categories = useQuery("categories", async () => {
         const data = await axios.get('http://localhost:5000/api/category/')
@@ -76,8 +80,21 @@ const NavBar: React.FC<Props> = ({ toggleDrawer }) => {
                         }
 
                         <SearchBar />
-                        <Box onClick={toggleDrawer(true)}>
+                        <Box onClick={toggleDrawer(true)} sx={{ display: "flex", alignItems: "flex-end" }}>
                             <ShoppingCart />
+                            <Typography variant="h6" sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                backgroundColor: "#ECECEC",
+                                color: "primary.main",
+                                borderRadius: "50%",
+                                width: '1rem',
+                                height: "1rem",
+                                fontSize: "0.8rem",
+                                marginLeft: "-1rem",
+                                zIndex: "4"
+                            }}>{quantity}</Typography>
                         </Box>
 
                     </Toolbar>
