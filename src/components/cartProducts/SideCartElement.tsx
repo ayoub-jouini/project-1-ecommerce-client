@@ -23,16 +23,16 @@ const SideCartElement: React.FC<Props> = ({ productId, productImage, productName
     }, [productAmount, productPrice])
 
     return (
-        <Card sx={{ display: "flex", justifyContent: "space-between", margin: "1rem 0" }}>
+        <Card sx={{ display: "flex", justifyContent: "space-between", margin: "1rem 0", height: '7rem' }}>
             <CardMedia
-                sx={{ width: "20%" }}
+                sx={{ width: "25%" }}
                 component="img"
                 image={`http://localhost:5000/${productImage}`}
                 alt={productImage} />
-            <CardContent sx={{ width: "75%" }}>
+            <CardContent sx={{ width: "70%" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
                     <Box>
-                        <Typography variant='body1' component="h3" >{productName}</Typography>
+                        <Typography variant='body1' component="h5" >{productName}</Typography>
                         <Typography variant='body1' component="h5">Size: {productSize}</Typography>
                         <Typography variant='body2' component="h4">{productPrice}TND</Typography>
                     </Box>
@@ -41,7 +41,7 @@ const SideCartElement: React.FC<Props> = ({ productId, productImage, productName
                             <Box>
                                 <Typography variant="body2" component="h4"> {totalPrice}TND</Typography>
                             </Box>
-                            <Box onClick={() => { removeFromCart(productId) }}>
+                            <Box onClick={() => { removeFromCart(productId, productSize) }}>
                                 <DeleteForeverIcon fontSize="small" sx={{ cursor: "pointer" }} />
                             </Box>
                         </Box>
