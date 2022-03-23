@@ -31,7 +31,7 @@ const ProductCard: React.FC<Props> = ({ id, name, description, price, category, 
                             {name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {price}
+                            {price}TND
                         </Typography>
                     </CardContent>
                 </CardActionArea>

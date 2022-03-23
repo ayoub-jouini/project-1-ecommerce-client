@@ -28,7 +28,7 @@ const ProductCardMin: React.FC<Props> = ({ id, name, description, price, categor
                                 {name}
                             </Typography>
                             <Typography variant="body1" color="text.secondary" component="div">
-                                {price}
+                                {price}TND
                             </Typography>
                         </Box>
                         <Box sx={{ width: "20%", height: "100%" }}>
