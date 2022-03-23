@@ -2,10 +2,11 @@ import { Box } from '@mui/material';
 import React from 'react'
 import { useCart } from '../../utils/Cart-Context';
 import CartCard from './CartCard';
+import CartValidation from './CartValidation';
 
 const CartProducts: React.FC = () => {
 
-    const { cart } = useCart()
+    const { cart, quantity, totalPrice } = useCart()
 
     return (
         <Box>
@@ -19,14 +20,7 @@ const CartProducts: React.FC = () => {
                     productAmount={product.amount}
                     productPrice={product.price} />
             ))}
-            {/* <CartCard productImage='./assets/images/radu-florin-OP8655xgBjo-unsplash.jpg'
-                productName='mariyoul'
-                productCategory='category1'
-                productDescription='qdfsdfsdfsdfdfsfs'
-                productSize='m'
-                productAmount={2}
-                productPrice={40}
-            /> */}
+            <CartValidation quantity={quantity} totalPrice={totalPrice} />
         </Box>
     );
 }
