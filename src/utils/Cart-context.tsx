@@ -18,6 +18,7 @@ const CartStateContext = React.createContext<
         totalPrice: () => number;
         addToCart: (product: any) => void;
         removeFromCart: (productId: string, productSize: string) => void
+        changeAmount: (productId: string, productSize: string, productAmount: number) => void;
     } | undefined
 >(undefined)
 
@@ -97,8 +98,19 @@ const CartProvider = ({ children }: CartProviderProps) => {
         return tPrice;
     }
 
+    const changeAmount = (productId: string, productSize: string, productAmount: number) => {
+        if (productAmount > 0) {
+            let productIndex = searchProductIndex(productId, productSize);
+            let cartArray = cart;
+            let productsQuantity = (quantity - cartArray[productIndex].amount) + productAmount;
+            cartArray[productIndex].amount = productAmount;
+            setCart(cartArray)
+            setQauntity(productsQuantity)
+        }
+    }
+
     return (
-        <CartStateContext.Provider value={{ cart, quantity, totalPrice, addToCart, removeFromCart }}>
+        <CartStateContext.Provider value={{ cart, quantity, totalPrice, addToCart, removeFromCart, changeAmount }}>
             {children}
         </CartStateContext.Provider>
     )
