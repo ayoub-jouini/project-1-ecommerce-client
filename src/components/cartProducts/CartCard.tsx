@@ -78,7 +78,7 @@ const CartCard: React.FC<Props> = ({ productId, productImage, productName, produ
                         <Box sx={{ marginLeft: { xs: "2.8rem" } }}>
                             <Typography variant="h5" component="h4"> {totalPrice}TND</Typography>
                         </Box>
-                        <Box onClick={() => { removeFromCart(productId) }}>
+                        <Box onClick={() => { removeFromCart(productId, productSize) }}>
                             <DeleteForeverIcon fontSize="large" sx={{ cursor: "pointer" }} />
                         </Box>
                     </Box>
