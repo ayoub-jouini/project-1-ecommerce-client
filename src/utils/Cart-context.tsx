@@ -2,55 +2,81 @@ import React, { useState } from 'react'
 
 type CartProviderProps = { children: React.ReactNode }
 
+interface CartProps {
+    id: string;
+    image: string;
+    name: string;
+    size: string;
+    amount: number;
+    price: number;
+}
+
 const CartStateContext = React.createContext<
     {
-        cart: any;
+        cart: CartProps[];
+        quantity: number;
         totalPrice: () => number;
         addToCart: (product: any) => void;
-        removeFromCart: (productId: string) => void
+        removeFromCart: (productId: string, productSize: string) => void
     } | undefined
 >(undefined)
 
 const CartProvider = ({ children }: CartProviderProps) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState<CartProps[]>([])
+    const [quantity, setQauntity] = useState<number>(0);
 
-    const searchProductIndex = (productId: string) => {
+    const sizeAndQuantityCheck = (size: string, amount: number): boolean => {
+        let check = true;
+        if (size === '') {
+            check = false;
+        }
+        if (amount < 1) {
+            check = false
+        }
+
+        return check;
+    }
+
+    const searchProductIndex = (productId: string, productSize: string) => {
         let index = -1;
         if (cart.length > 0) {
             for (let i = 0; i < cart.length; i++) {
                 // @ts-ignore
-                if (cart[i].id === productId) {
+                if (cart[i].id === productId && cart[i].size === productSize) {
                     index = i;
+                    break;
                 }
-                break;
+
             }
         }
         return index;
     }
 
     const addToCart = (product: any) => {
-        let cartArray = cart;
-        const productIndex = searchProductIndex(product.id);
-        if (productIndex === -1) {
-            // @ts-ignore
-            cartArray.push(product);
-        } else {
-            // @ts-ignore
-            cartArray[productIndex].amount = cartArray[productIndex].amount + 1;
+        let cartArray: CartProps[] = cart;
+        let sizeAndQuantity = sizeAndQuantityCheck(product.size, product.amount)
+        let productIndex = searchProductIndex(product.id, product.size);
+        if (sizeAndQuantity) {
+            if (productIndex === -1) {
+                cartArray.push(product);
+            } else if (cartArray[productIndex].size === product.size) {
+                cartArray[productIndex].amount = cartArray[productIndex].amount + product.amount;
+            }
+            setCart(cartArray);
+            setQauntity(quantity + product.amount)
         }
-        setCart(cartArray);
     }
 
-    const removeFromCart = (productId: any) => {
+    const removeFromCart = (productId: any, productSize: string) => {
         let cartArray = cart;
-        const productIndex = searchProductIndex(productId);
-
+        let productIndex = searchProductIndex(productId, productSize);
+        setQauntity(quantity - cart[productIndex].amount)
         if (productIndex === 0) {
-            const cartArray2 = cartArray.slice(productIndex + 1);
+            let cartArray2 = cartArray.slice(productIndex + 1);
             setCart(cartArray2);
         } else {
-            const cartArray1 = cartArray.slice(0, productIndex);
-            const cartArray2 = cartArray.slice(productIndex + 1);
+            let cartArray1 = cartArray.slice(0, productIndex);
+            let cartArray2 = cartArray.slice(productIndex + 1);
             if (!cartArray2) {
                 setCart(cartArray1)
             } else {
@@ -72,7 +98,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
     }
 
     return (
-        <CartStateContext.Provider value={{ cart, totalPrice, addToCart, removeFromCart }}>
+        <CartStateContext.Provider value={{ cart, quantity, totalPrice, addToCart, removeFromCart }}>
             {children}
         </CartStateContext.Provider>
     )
