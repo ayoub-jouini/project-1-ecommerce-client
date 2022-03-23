@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import SideCartElement from './SideCartElement';
 import { useCart } from '../../utils/Cart-Context';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface Props {
     toggleDrawer: (toggler: boolean) => any;
@@ -23,8 +25,6 @@ const TemporaryDrawer: React.FC<Props> = ({ toggleDrawer, toggle }) => {
                         bgcolor="primary.dark"
                         sx={{ width: 320, height: "100%", padding: "1rem" }}
                         role="presentation"
-                        onClick={toggleDrawer(false)}
-                        onKeyDown={toggleDrawer(false)}
                     > {cart.map((product: any, key: any) => (
                         <SideCartElement
                             key={key}
@@ -35,6 +35,9 @@ const TemporaryDrawer: React.FC<Props> = ({ toggleDrawer, toggle }) => {
                             productAmount={product.amount}
                             productPrice={product.price} />
                     ))}
+                        <Link to="cart">
+                            <Typography variant="h6" color="secondary.main" sx={{ float: "right" }} >Go To Cart</Typography>
+                        </Link>
                     </Box>
                 </Drawer>
             </React.Fragment>
