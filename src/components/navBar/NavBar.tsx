@@ -16,7 +16,7 @@ import { Box } from "@mui/system";
 import { useCart } from "../../utils/Cart-Context";
 import { Typography } from "@mui/material";
 
-const pages: string[] = ['Promotions', 'News', 'Blog', 'About', 'Contact'];
+const pages: string[] = ['Promotions', 'News', 'About', 'Contact'];
 
 interface Props {
     toggleDrawer: (toggle: boolean) => any;
