@@ -50,7 +50,7 @@ const NavMenuResp: React.FC<Props> = ({ pages, categories, handleOpenNavMenu,
                 }}
             >
 
-                <Accordion>
+                <Accordion sx={{ boxShadow: 0 }}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -61,8 +61,8 @@ const NavMenuResp: React.FC<Props> = ({ pages, categories, handleOpenNavMenu,
                     <AccordionDetails>
                         {
                             categories.map((category: any, key: any) => (
-                                <Link to={`products/${category.categoryName}`}>
-                                    <MenuItem onClick={handleCloseNavMenu} key={key}>
+                                <Link to={`products/${category.categoryName}`} key={key}>
+                                    <MenuItem onClick={handleCloseNavMenu} >
                                         {category.categoryName}
                                     </MenuItem >
                                 </Link>

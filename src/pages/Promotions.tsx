@@ -20,7 +20,7 @@ const Promotions: React.FC = () => {
     return (
         <Box sx={{ width: "100%" }}>
 
-            <Breadcrumb pageName="New Products" />
+            <Breadcrumb pageName="Best Products" />
             <Container sx={{ display: "flex", justifyContent: "space-between" }}>
 
                 <Box sx={{ width: "25%", display: { xs: 'none', md: 'flex' } }}>

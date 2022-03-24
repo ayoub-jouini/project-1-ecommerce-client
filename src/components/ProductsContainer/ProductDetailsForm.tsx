@@ -46,7 +46,7 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
     return (
         <form style={{ width: "100%" }} >
             <Box sx={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
-                <FormControl sx={{ width: "40%" }}>
+                <FormControl sx={{ width: { xs: "45%", sm: "40%" } }}>
                     <InputLabel id="demo-simple-select-label1">Size</InputLabel>
                     <Select
                         labelId="demo-simple-select-label1"
@@ -64,7 +64,7 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
 
                     </Select>
                 </FormControl>
-                <FormControl sx={{ width: "40%" }}>
+                <FormControl sx={{ width: { xs: "45%", sm: "40%" } }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between" }} >
                         <TextField
                             id="demo-simple-select2"

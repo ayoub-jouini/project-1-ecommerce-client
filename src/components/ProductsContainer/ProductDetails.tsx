@@ -63,8 +63,8 @@ const ProductDetails: React.FC = () => {
                         <Grid item xs={12} md={6} sx={{ margin: " 0 1.5rem" }}>
                             <Box>
                                 <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
-                                    <Typography variant="h3" component="h1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.productName}</Typography>
-                                    <Typography variant="h5" component="h2" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.productCategory}</Typography>
+                                    <Typography variant="h3" component="h1" sx={{ marginBottom: "1rem", fontSize: { xs: "2.5rem" } }}>{products.data?.data.product.productName}</Typography>
+                                    <Typography variant="h5" component="h2" sx={{ marginBottom: "1rem", fontSize: { xs: "1.2rem" } }}>{products.data?.data.product.productCategory}</Typography>
                                 </Box>
                                 <Typography variant="h4" component="h2" color="secondary.dark" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.price} TND</Typography>
                                 <Typography variant="body1" sx={{ marginBottom: "1rem" }}>{products.data?.data.product.description}</Typography>

@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             <Container sx={{ marginTop: "50px", marginBottom: "50px" }} >
                 <BoxStyle>
                     <Box sx={{ width: "100%", textAlign: "center", marginBottom: "50px" }} >
-                        <Typography variant='h4' color="primary">NEW-Products</Typography>
+                        <Typography variant='h4' color="primary">NEW-PRODUCTS</Typography>
                     </Box>
                     {newProductsData.isLoading && <LoadingRow />}
                     {newProductsData.isError && <LoadingError />}
