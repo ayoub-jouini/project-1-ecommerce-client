@@ -61,9 +61,11 @@ const NavMenuResp: React.FC<Props> = ({ pages, categories, handleOpenNavMenu,
                     <AccordionDetails>
                         {
                             categories.map((category: any, key: any) => (
-                                <MenuItem onClick={handleCloseNavMenu} key={key}>
-                                    {category.categoryName}
-                                </MenuItem >
+                                <Link to={`products/${category.categoryName}`}>
+                                    <MenuItem onClick={handleCloseNavMenu} key={key}>
+                                        {category.categoryName}
+                                    </MenuItem >
+                                </Link>
                             ))
                         }
 

@@ -16,14 +16,13 @@ import { Box } from "@mui/system";
 import { useCart } from "../../utils/CartContext";
 import { Typography } from "@mui/material";
 
-const pages: string[] = ['Promotions', 'News', 'About', 'Contact'];
-
 interface Props {
     toggleDrawer: (toggle: boolean) => any;
 }
 
 const NavBar: React.FC<Props> = ({ toggleDrawer }) => {
 
+    const pages: string[] = ['Promotions', 'News', 'About', 'Contact'];
     const { quantity } = useCart();
 
     const categories = useQuery("categories", async () => {
