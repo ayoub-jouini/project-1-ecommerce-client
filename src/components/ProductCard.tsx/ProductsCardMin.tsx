@@ -18,7 +18,7 @@ const ProductCardMin: React.FC<Props> = ({ id, name, description, price, categor
                 <CardMedia
                     component="img"
                     sx={{ width: "40%" }}
-                    image={`http://localhost:5000/${image}`}
+                    image={`${process.env.REACT_APP_ASSET_URL}/${image}`}
                     alt={image}
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>

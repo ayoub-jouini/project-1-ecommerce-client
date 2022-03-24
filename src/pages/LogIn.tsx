@@ -19,7 +19,7 @@ const LogIn: React.FC = () => {
     const handleSubmit = (event: any) => {
         console.log("submited")
         event.preventDefault();
-        axios.post('http://localhost:5000/api/users/singin', {
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/singin`, {
             email,
             password
         })

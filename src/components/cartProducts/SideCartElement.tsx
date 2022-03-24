@@ -27,7 +27,7 @@ const SideCartElement: React.FC<Props> = ({ productId, productImage, productName
             <CardMedia
                 sx={{ width: "25%" }}
                 component="img"
-                image={`http://localhost:5000/${productImage}`}
+                image={`${process.env.REACT_APP_ASSET_URL}/${productImage}`}
                 alt={productImage} />
             <CardContent sx={{ width: "70%" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>

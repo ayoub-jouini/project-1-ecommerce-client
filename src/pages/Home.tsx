@@ -21,12 +21,12 @@ const BoxStyle = styled('div')(({ theme }) => ({
 const Home: React.FC = () => {
 
     const bestProductData = useQuery(['products', 'best'], async () => {
-        const data = await axios.get('http://localhost:5000/api/products/bestProducts')
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/bestProducts`)
         return data;
     });
 
     const newProductsData = useQuery(['products', 'new'], async () => {
-        const data = await axios.get('http://localhost:5000/api/products/newproducts');
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/newproducts`);
         return data;
     })
 

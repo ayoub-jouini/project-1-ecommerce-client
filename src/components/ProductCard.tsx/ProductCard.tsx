@@ -23,7 +23,7 @@ const ProductCard: React.FC<Props> = ({ id, name, description, price, category, 
                     <CardMedia
                         component="img"
                         height="300"
-                        image={`http://localhost:5000/${image}`}
+                        image={`${process.env.REACT_APP_ASSET_URL}/${image}`}
                         alt="green iguana"
                     />
                     <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

@@ -27,7 +27,7 @@ const NavBar: React.FC<Props> = ({ toggleDrawer }) => {
     const { quantity } = useCart();
 
     const categories = useQuery("categories", async () => {
-        const data = await axios.get('http://localhost:5000/api/category/')
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/category/`)
         return data;
     })
 

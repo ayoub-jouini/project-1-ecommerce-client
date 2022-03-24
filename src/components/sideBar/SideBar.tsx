@@ -10,12 +10,12 @@ import SideBarCategories from './SideBarCategories';
 const SideBar: React.FC = () => {
 
     const bestProductData = useQuery(['products', 'best'], async () => {
-        const data = await axios.get('http://localhost:5000/api/products/bestProducts')
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/bestProducts`)
         return data;
     });
 
     const categories = useQuery("categories", async () => {
-        const data = await axios.get('http://localhost:5000/api/category/')
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/category/`)
         return data;
     })
     console.log(categories)

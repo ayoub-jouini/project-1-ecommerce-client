@@ -13,7 +13,7 @@ import SideBar from "../components/sideBar/SideBar";
 const News: React.FC = () => {
 
     const products = useQuery(['products', "new"], async () => {
-        const data = await axios.get(`http://localhost:5000/api/products/newproducts`);
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/newproducts`);
         return data;
     })
 

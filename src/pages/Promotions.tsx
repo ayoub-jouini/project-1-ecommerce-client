@@ -13,7 +13,7 @@ import SideBar from "../components/sideBar/SideBar";
 const Promotions: React.FC = () => {
 
     const products = useQuery(['products', "best"], async () => {
-        const data = await axios.get(`http://localhost:5000/api/products/bestProducts`);
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/bestProducts`);
         return data;
     })
 

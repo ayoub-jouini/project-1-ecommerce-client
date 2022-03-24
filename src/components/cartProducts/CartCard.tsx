@@ -47,7 +47,7 @@ const CartCard: React.FC<Props> = ({ productId, productImage, productName, produ
                 sx={{ width: "20%" }}
                 component="img"
                 height="150"
-                image={`http://localhost:5000/${productImage}`}
+                image={`${process.env.REACT_APP_ASSET_URL}/${productImage}`}
                 alt={productImage} />
             <CardContent sx={{ width: "75%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box>

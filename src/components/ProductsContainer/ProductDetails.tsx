@@ -30,12 +30,12 @@ const ProductDetails: React.FC = () => {
     const productId = params.product;
 
     const products = useQuery(["product", productId], async () => {
-        const data = await axios.get(`http://localhost:5000/api/products/${productCategory}/${productId}`);
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${productCategory}/${productId}`);
         return data;
     })
 
     const newProductsData = useQuery(['products', 'new'], async () => {
-        const data = await axios.get('http://localhost:5000/api/products/newproducts');
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/newproducts`);
         return data;
     })
 
@@ -54,7 +54,7 @@ const ProductDetails: React.FC = () => {
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
-                                        image={`http://localhost:5000/${products.data?.data.product.image}`}
+                                        image={`${process.env.REACT_APP_ASSET_URL}/${products.data?.data.product.image}`}
                                         alt={products.data?.data.product.image}
                                     />
                                 </CardActionArea>

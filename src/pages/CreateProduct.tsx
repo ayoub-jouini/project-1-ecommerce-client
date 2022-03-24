@@ -50,7 +50,7 @@ const CreateProduct: React.FC = () => {
         // @ts-ignore
         formData.append('image', file);
         console.log(formData)
-        axios.post('http://localhost:5000/api/products/',
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/products/`,
             formData,
             {
                 headers: {
