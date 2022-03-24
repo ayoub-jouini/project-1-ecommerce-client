@@ -1,3 +1,4 @@
+import { Box } from "@mui/material"
 import React from "react"
 import Carousel from 'react-material-ui-carousel'
 import CarouselItem from "./CarouselItem"
@@ -25,7 +26,7 @@ const CarouselComponent: React.FC = () => {
     ]
 
     return (
-        <Carousel>
+        <Carousel className="carouselComponent" >
             {
                 items.map((item, i) => <CarouselItem key={i} name={item.name} description={item.description} image={item.image} pageLink={item.pageLink} />)
             }
