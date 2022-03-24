@@ -35,7 +35,7 @@ const TemporaryDrawer: React.FC<Props> = ({ toggleDrawer, toggle }) => {
                             productAmount={product.amount}
                             productPrice={product.price} />
                     ))}
-                        <Link to="cart">
+                        <Link to="cart" onClick={toggleDrawer(false)}>
                             <Typography variant="h6" color="secondary.main" sx={{ float: "right" }} >Go To Cart</Typography>
                         </Link>
                     </Box>
