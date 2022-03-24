@@ -9,12 +9,17 @@ interface Props {
 
 const Breadcrumb: React.FC<Props> = ({ pageName }) => {
 
+    let dispalyPageName = "none";
+    if (pageName) {
+        dispalyPageName = "flex"
+    }
+
     const params = useParams();
 
     return (
         <Box sx={{
             height: "1.5rem",
-            padding: "2rem",
+            padding: { xs: "1.5rem", sm: "2rem" },
             backgroundColor: "primary.light",
             color: "#ECECEC"
         }}>
@@ -23,7 +28,7 @@ const Breadcrumb: React.FC<Props> = ({ pageName }) => {
                 alignItems: "center",
                 justifyContent: { xs: "center", md: "space-between" }
             }}>
-                <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Box sx={{ display: { xs: dispalyPageName, md: "flex" } }}>
                     <Typography variant="h5">
                         {params.category || pageName}
                     </Typography>
