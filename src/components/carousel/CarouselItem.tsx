@@ -28,7 +28,7 @@ const CarouselItem: React.FC<Props> = ({ name, description, image, pageLink }) =
                         flexDirection: "column",
                         alignItems: "center"
                     }}>
-                        <Typography variant="h3" sx={{ marginBottom: { sm: '30px', xs: "4rem" } }} >{name}</Typography>
+                        <Typography variant="h3" sx={{ marginBottom: { sm: '30px', xs: "4rem" }, textAlign: { xs: "center", sm: "left" } }} >{name}</Typography>
                         <Typography variant="body1" sx={{ marginBottom: { sm: '30px', xs: "4rem" }, textAlign: { xs: "center", sm: "left" } }}>{description}</Typography>
                         <Link to={pageLink}>
                             <Button variant="outlined" className="CheckButton" sx={{ height: "100px", width: { sm: "80%", xs: "18rem" }, borderWidth: "3px", marginBottom: '30px', color: { sm: "primary.main", xs: "white" }, borderColor: { xs: "white", sm: "primary.main" } }}>
