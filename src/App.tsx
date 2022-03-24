@@ -23,7 +23,7 @@ import AuthContext from './utils/auth-context';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ProductsContainer from './components/ProductsContainer/ProductsContainer';
 import Cart from './pages/Cart';
-import { CartProvider } from './utils/Cart-Context';
+import { CartProvider } from './utils/CartContext';
 import TemporaryDrawer from './components/cartProducts/SideCart';
 
 interface Theme {

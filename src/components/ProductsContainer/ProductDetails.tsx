@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { useCart } from "../../utils/Cart-Context";
+import { useCart } from "../../utils/CartContext";
 import LoadingError from "../loadingProduct.tsx/LoadingError";
 import LoadingProductDetails from "../loadingProduct.tsx/LoadingProductDetails";
 import LoadingRow from "../loadingProduct.tsx/LoadingRow";

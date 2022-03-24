@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import SideCartElement from './SideCartElement';
-import { useCart } from '../../utils/Cart-Context';
+import { useCart } from '../../utils/CartContext';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 

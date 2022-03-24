@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useCart } from '../../utils/Cart-Context';
+import { useCart } from '../../utils/CartContext';
 
 interface Props {
     productId: string;

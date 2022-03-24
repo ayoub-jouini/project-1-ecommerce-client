@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react'
-import { useCart } from '../../utils/Cart-Context';
+import { useCart } from '../../utils/CartContext';
 import CartCard from './CartCard';
 import CartValidation from './CartValidation';
 

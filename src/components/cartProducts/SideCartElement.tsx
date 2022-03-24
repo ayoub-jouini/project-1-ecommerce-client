@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useCart } from "../../utils/Cart-Context";
+import { useCart } from "../../utils/CartContext";
 
 interface Props {
     productId: string;

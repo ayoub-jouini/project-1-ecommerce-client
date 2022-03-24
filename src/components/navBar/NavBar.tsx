@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
-import { useCart } from "../../utils/Cart-Context";
+import { useCart } from "../../utils/CartContext";
 import { Typography } from "@mui/material";
 
 const pages: string[] = ['Promotions', 'News', 'About', 'Contact'];
