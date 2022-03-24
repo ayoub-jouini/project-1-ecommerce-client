@@ -17,7 +17,7 @@ interface Props {
 
 const ProductCard: React.FC<Props> = ({ id, name, description, price, category, image }) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: { sm: 345, xs: "100%" } }}>
             <Link to={`/products/${category}/${id}`}>
                 <CardActionArea>
                     <CardMedia

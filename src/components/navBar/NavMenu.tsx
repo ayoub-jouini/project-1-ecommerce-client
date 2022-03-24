@@ -19,8 +19,9 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
     return (
         <Box sx={{ flexGrow: 0.2, display: { xs: 'none', md: 'flex' } }}>
             <Button
+                variant="contained"
                 onClick={handleOpenUserMenu}
-                sx={{ my: 2, color: '#ECECEC', display: 'block' }}
+                sx={{ my: 2, color: '#ECECEC', display: 'block', boxShadow: 0 }}
             >
                 products
             </Button>
@@ -32,8 +33,9 @@ const NavMenu: React.FC<Props> = ({ pages, handleOpenUserMenu, handleCloseNavMen
             {pages.map<JSX.Element>((page, key) => (
                 <Link to={`${page}`} key={key}>
                     <Button
+                        variant="contained"
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: '#ECECEC', display: 'block' }}
+                        sx={{ my: 2, color: '#ECECEC', display: 'block', boxShadow: 0 }}
                     >
                         {page}
                     </Button>
