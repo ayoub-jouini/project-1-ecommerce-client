@@ -16,6 +16,7 @@ import Cart from './pages/Cart';
 import { CartProvider } from './utils/CartContext';
 import TemporaryDrawer from './components/cartProducts/SideCart';
 import LoadingSpiner from './components/LoadingSpiner/LoadingSpiner';
+import ScrollToTop from './utils/ScrollToTop';
 
 //react lazy
 const AboutUs = React.lazy(() => import('./pages/AboutUs'));
@@ -100,27 +101,29 @@ const App: React.FC = () => {
           }}>
             <QueryClientProvider client={queryClient} contextSharing={true}>
               <CartProvider>
-                <NavBar toggleDrawer={toggleDrawer} />
-                <Suspense fallback={<LoadingSpiner />}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="promotions" element={<Promotions />} />
-                    <Route path="blog" element={<Blog />} />
-                    <Route path="news" element={<News />} />
-                    <Route path="about" element={<AboutUs />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="products" element={<Products />}>
-                      <Route index element={<ProductsContainer />} />
-                      <Route path=":category" element={<ProductsContainer />} />
-                      <Route path=":category/:product" element={<Product />} />
-                    </Route>
-                    <Route path="cart" element={<Cart />} />
-                    <Route path="admin-dashboard" element={dashboardRoute} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                  <TemporaryDrawer toggleDrawer={toggleDrawer} toggle={toggle} />
-                </Suspense>
-                <Footer />
+                <ScrollToTop>
+                  <NavBar toggleDrawer={toggleDrawer} />
+                  <Suspense fallback={<LoadingSpiner />}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="promotions" element={<Promotions />} />
+                      <Route path="blog" element={<Blog />} />
+                      <Route path="news" element={<News />} />
+                      <Route path="about" element={<AboutUs />} />
+                      <Route path="contact" element={<Contact />} />
+                      <Route path="products" element={<Products />}>
+                        <Route index element={<ProductsContainer />} />
+                        <Route path=":category" element={<ProductsContainer />} />
+                        <Route path=":category/:product" element={<Product />} />
+                      </Route>
+                      <Route path="cart" element={<Cart />} />
+                      <Route path="admin-dashboard" element={dashboardRoute} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <TemporaryDrawer toggleDrawer={toggleDrawer} toggle={toggle} />
+                  </Suspense>
+                  <Footer />
+                </ScrollToTop>
               </CartProvider>
             </QueryClientProvider>
           </AuthContext.Provider>
