@@ -1,20 +1,10 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import "./styles/app.css"
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import useAuth from './utils/useAuth';
 
-import AboutUs from './pages/AboutUs';
-import Blog from './pages/Blog';
-import Contact from './pages/Contact';
 import Home from './pages/Home';
-import News from './pages/News';
-import NotFound from './pages/NotFound';
-import Product from './components/ProductsContainer/ProductDetails';
-import Products from './pages/Products';
-import Promotions from './pages/Promotions';
-import LogIn from './pages/LogIn';
-import CreateProduct from './pages/CreateProduct';
 
 import NavBar from './components/navBar/NavBar';
 import Footer from './components/footer/Footer';
@@ -25,6 +15,19 @@ import ProductsContainer from './components/ProductsContainer/ProductsContainer'
 import Cart from './pages/Cart';
 import { CartProvider } from './utils/CartContext';
 import TemporaryDrawer from './components/cartProducts/SideCart';
+import LoadingSpiner from './components/LoadingSpiner/LoadingSpiner';
+
+//react lazy
+const AboutUs = React.lazy(() => import('./pages/AboutUs'));
+const Blog = React.lazy(() => import('./pages/Blog'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const News = React.lazy(() => import('./pages/News'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+const Product = React.lazy(() => import('./components/ProductsContainer/ProductDetails'));
+const Products = React.lazy(() => import('./pages/Products'));
+const Promotions = React.lazy(() => import('./pages/Promotions'));
+const LogIn = React.lazy(() => import('./pages/LogIn'));
+const CreateProduct = React.lazy(() => import('./pages/CreateProduct'));
 
 interface Theme {
   palette: {
@@ -98,23 +101,25 @@ const App: React.FC = () => {
             <QueryClientProvider client={queryClient} contextSharing={true}>
               <CartProvider>
                 <NavBar toggleDrawer={toggleDrawer} />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="promotions" element={<Promotions />} />
-                  <Route path="blog" element={<Blog />} />
-                  <Route path="news" element={<News />} />
-                  <Route path="about" element={<AboutUs />} />
-                  <Route path="contact" element={<Contact />} />
-                  <Route path="products" element={<Products />}>
-                    <Route index element={<ProductsContainer />} />
-                    <Route path=":category" element={<ProductsContainer />} />
-                    <Route path=":category/:product" element={<Product />} />
-                  </Route>
-                  <Route path="cart" element={<Cart />} />
-                  <Route path="admin-dashboard" element={dashboardRoute} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-                <TemporaryDrawer toggleDrawer={toggleDrawer} toggle={toggle} />
+                <Suspense fallback={<LoadingSpiner />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="promotions" element={<Promotions />} />
+                    <Route path="blog" element={<Blog />} />
+                    <Route path="news" element={<News />} />
+                    <Route path="about" element={<AboutUs />} />
+                    <Route path="contact" element={<Contact />} />
+                    <Route path="products" element={<Products />}>
+                      <Route index element={<ProductsContainer />} />
+                      <Route path=":category" element={<ProductsContainer />} />
+                      <Route path=":category/:product" element={<Product />} />
+                    </Route>
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="admin-dashboard" element={dashboardRoute} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                  <TemporaryDrawer toggleDrawer={toggleDrawer} toggle={toggle} />
+                </Suspense>
                 <Footer />
               </CartProvider>
             </QueryClientProvider>
