@@ -20,7 +20,7 @@ const data = [
     },
     {
         title: "Products",
-        atributs: ["Promotions", "New Products", "Bes selles"]
+        atributs: ["Promotions", "New Products", "Best selles"]
     }
 ];
 

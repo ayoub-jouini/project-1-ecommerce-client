@@ -37,9 +37,11 @@ const ProductCard: React.FC<Props> = ({ id, name, description, price, category, 
                 </CardActionArea>
             </Link>
             <CardActions sx={{ display: "flex", flexDirection: "column", alignItems: "center" }} >
-                <Button size="small" color="primary">
-                    Buy
-                </Button>
+                <Link to={`/products/${category}/${id}`} >
+                    <Button size="small" color="primary">
+                        Details
+                    </Button>
+                </Link>
             </CardActions>
         </Card>
     );
