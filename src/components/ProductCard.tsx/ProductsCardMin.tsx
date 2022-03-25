@@ -32,9 +32,11 @@ const ProductCardMin: React.FC<Props> = ({ id, name, description, price, categor
                             </Typography>
                         </Box>
                         <Box sx={{ width: "20%", height: "100%" }}>
-                            <Button sx={{ width: "100%", height: "100%" }} >
-                                Buy
-                            </Button>
+                            <Link to={`/products/${category}/${id}`}>
+                                <Button sx={{ width: "100%", height: "100%" }} >
+                                    Details
+                                </Button>
+                            </Link>
                         </Box>
                     </CardContent>
                 </Box>
