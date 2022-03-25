@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                             <Box sx={{ marginBottom: "15px", display: "flex", alignItems: "center" }} >
                                 <PhoneIcon sx={{ marginRight: "5px" }} />
                                 <Typography>
-                                    95651756
+                                    (205) 553-8773
                                 </Typography>
                             </Box>
                             <Box sx={{ marginBottom: "15px", display: "flex", alignItems: "center" }}>
