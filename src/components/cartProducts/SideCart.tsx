@@ -5,6 +5,7 @@ import SideCartElement from './SideCartElement';
 import { useCart } from '../../utils/CartContext';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
     toggleDrawer: (toggler: boolean) => any;
@@ -23,18 +24,22 @@ const TemporaryDrawer: React.FC<Props> = ({ toggleDrawer, toggle }) => {
                 >
                     <Box
                         bgcolor="primary.dark"
-                        sx={{ width: 320, height: "100%", padding: "1rem" }}
+                        sx={{ width: "17rem", height: "100%", padding: "1rem" }}
                         role="presentation"
-                    > {cart.map((product: any, key: any) => (
-                        <SideCartElement
-                            key={key}
-                            productId={product.id}
-                            productImage={product.image}
-                            productName={product.name}
-                            productSize={product.size}
-                            productAmount={product.amount}
-                            productPrice={product.price} />
-                    ))}
+                    >
+                        <Box>
+                            <CloseIcon color='secondary' onClick={toggleDrawer(false)} />
+                        </Box>
+                        {cart.map((product: any, key: any) => (
+                            <SideCartElement
+                                key={key}
+                                productId={product.id}
+                                productImage={product.image}
+                                productName={product.name}
+                                productSize={product.size}
+                                productAmount={product.amount}
+                                productPrice={product.price} />
+                        ))}
                         <Link to="cart" onClick={toggleDrawer(false)}>
                             <Typography variant="h6" color="secondary.main" sx={{ float: "right" }} >Go To Cart</Typography>
                         </Link>

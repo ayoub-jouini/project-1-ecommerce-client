@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardMedia, FormControl, TextField, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, FormControl, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -51,14 +51,14 @@ const CartCard: React.FC<Props> = ({ productId, productImage, productName, produ
                 alt={productImage} />
             <CardContent sx={{ width: "75%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box>
-                    <Typography variant='h5' component="h3">{productName}</Typography>
-                    <Typography variant='h6' component="h5">Size: {productSize}</Typography>
-                    <Typography variant='h5' component="h4">{productPrice}TND</Typography>
+                    <Typography variant='h5' component="h3" sx={{ fontSize: "1.2rem" }}>{productName}</Typography>
+                    <Typography variant='h6' component="h5" sx={{ fontSize: "1.1rem" }}>Size: {productSize}</Typography>
+                    <Typography variant='h5' component="h4" sx={{ fontSize: "1.1rem" }}>{productPrice}TND</Typography>
                 </Box>
-                <Box sx={{ display: "flex", justifyContent: "space-between", width: "80%", flexDirection: { xs: "column", md: "row" } }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", width: "55%", flexDirection: { xs: "column", md: "row" } }}>
                     <Box sx={{ width: { md: "60%", xs: "100%" }, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <FormControl sx={{ width: "50%" }} >
-                            <Box sx={{ display: "flex", justifyContent: "space-between" }} >
+                        <FormControl sx={{ width: "100%" }} >
+                            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }} >
                                 <TextField
                                     id="demo-simple-select2"
                                     value={amount}
@@ -68,22 +68,40 @@ const CartCard: React.FC<Props> = ({ productId, productImage, productName, produ
                                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                                 />
                                 <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "15%" }}>
-                                    <Button sx={{ border: 1, height: "25px", width: "100%" }} onClick={plusHandleChange}>
+                                    <Box sx={{
+                                        border: 1,
+                                        height: "25px",
+                                        width: "100%",
+                                        borderRadius: "0.2rem",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderColor: "primary.light"
+                                    }} onClick={plusHandleChange}>
                                         <ArrowDropUpIcon />
-                                    </Button>
-                                    <Button sx={{ border: 1, height: "25px" }} onClick={minusHandleChange}>
+                                    </Box>
+                                    <Box sx={{
+                                        border: 1,
+                                        height: "25px",
+                                        width: "100%",
+                                        borderRadius: "0.2rem",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderColor: "primary.light"
+                                    }} onClick={minusHandleChange}>
                                         <ArrowDropDownIcon />
-                                    </Button>
+                                    </Box>
                                 </Box>
                             </Box>
                         </FormControl>
                     </Box>
-                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: { xs: "100%", md: "40%" } }}>
-                        <Box sx={{ marginLeft: { xs: "2.8rem" } }}>
-                            <Typography variant="h5" component="h4"> {totalPrice}TND</Typography>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: { xs: "100%", md: "40%" }, marginTop: { xs: "0.5rem", md: "0" } }}>
+                        <Box sx={{ marginLeft: { md: "1rem", xs: "0" } }} >
+                            <Typography variant="h5" component="h4" sx={{ fontSize: "1.1rem" }}> {totalPrice}TND</Typography>
                         </Box>
                         <Box onClick={() => { removeFromCart(productId, productSize) }}>
-                            <DeleteForeverIcon fontSize="large" sx={{ cursor: "pointer" }} />
+                            <DeleteForeverIcon fontSize="large" sx={{ cursor: "pointer", marginRight: { xs: "-0.6rem", md: "0" } }} />
                         </Box>
                     </Box>
                 </Box>

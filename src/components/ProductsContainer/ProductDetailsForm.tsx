@@ -45,7 +45,7 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
 
     return (
         <form style={{ width: "100%" }} >
-            <Box sx={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                 <FormControl sx={{ width: { xs: "45%", sm: "40%" } }}>
                     <InputLabel id="demo-simple-select-label1">Size</InputLabel>
                     <Select
@@ -74,13 +74,31 @@ const ProductDetailsForm: React.FC<Props> = ({ addToCart, product }) => {
                             sx={{ width: "80%" }}
                             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         />
-                        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "15%" }}>
-                            <Button sx={{ border: 1, height: "25px", width: "100%" }} onClick={plusHandleChange}>
+                        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "20%" }}>
+                            <Box sx={{
+                                border: 1,
+                                height: "25px",
+                                width: "100%",
+                                borderRadius: "0.2rem",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                borderColor: "primary.light"
+                            }} onClick={plusHandleChange}>
                                 <ArrowDropUpIcon />
-                            </Button>
-                            <Button sx={{ border: 1, height: "25px" }} onClick={minusHandleChange}>
+                            </Box>
+                            <Box sx={{
+                                border: 1,
+                                height: "25px",
+                                width: "100%",
+                                borderRadius: "0.2rem",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                borderColor: "primary.light"
+                            }} onClick={minusHandleChange}>
                                 <ArrowDropDownIcon />
-                            </Button>
+                            </Box>
                         </Box>
                     </Box>
                 </FormControl>
